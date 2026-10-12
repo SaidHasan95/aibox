@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Box - All-in-One AI Space</title>
+    <style>
+        :root {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --card-hover: #2a2a2a;
+            --accent-color: #4CAF50;
+            --text-color: #ffffff;
+            --text-secondary: #a0a0a0;
+            --gold: #FFD700;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            padding-bottom: 40px;
+        }
+
+        /* HEADER */
+        header {
+            background-color: var(--card-bg);
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-icon {
+            font-size: 28px;
+            background: #2c2c2c;
+            padding: 6px 12px;
+            border-radius: 50%;
+        }
+
+        .logo-title {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .logo-subtitle {
+            font-size: 11px;
+            color: var(--text-secondary);
+        }
+
+        .dev-tag {
+            background-color: #2c2c2c;
+            color: var(--gold);
+            font-size: 12px;
+            font-weight: bold;
+            padding: 6px 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1200px;
+            margin: 24px auto;
+            padding: 0 16px;
+        }
+
+        /* SEARCH BAR */
+        .search-box {
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px;
+            border-radius: 30px;
+            border: 1px solid #333;
+            background-color: var(--card-bg);
+            color: #fff;
+            font-size: 15px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 8px rgba(76, 175, 80, 0.4);
+        }
+
+        /* CATEGORIES */
+        .category-container {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            margin-bottom: 24px;
+            scrollbar-width: thin;
+        }
+
+        .category-btn {
+            background-color: var(--card-bg);
+            color: var(--text-secondary);
+            border: none;
+            padding: 8px 18px;
+            border-radius: 20px;
+            cursor: pointer;
+            white-space: nowrap;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+
+        .category-btn.active, .category-btn:hover {
+            background-color: var(--accent-color);
+            color: #fff;
+        }
+
+        /* GRID */
+        .ai-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+        }
+
+        .ai-card {
+            background-color: var(--card-bg);
+            border-radius: 16px;
+            padding: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            transition: transform 0.2s, background-color 0.2s;
+            border: 1px solid #2a2a2a;
+        }
+
+        .ai-card:hover {
+            transform: translateY(-4px);
+            background-color: var(--card-hover);
+            border-color: var(--accent-color);
+        }
+
+        .fav-btn {
+            position: absolute;
+            top: 12px;
+            right: 14px;
+            font-size: 18px;
+            cursor: pointer;
+            color: #555;
+            transition: 0.2s;
+        }
+
+        .fav-btn.active {
+            color: var(--gold);
+        }
+
+        .ai-icon {
+            font-size: 36px;
+            background-color: #2c2c2c;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 12px;
+        }
+
+        .ai-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .ai-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-icon">🤖</div>
+            <div>
+                <div class="logo-title">AI Box</div>
+                <div class="logo-subtitle">All-in-One AI Workspace</div>
+            </div>
+        </div>
+        <div class="dev-tag">Developer by Said Hasan</div>
+    </header>
+
+    <div class="container">
+        <!-- SEARCH -->
+        <div class="search-box">
+            <input type="text" id="searchInput" class="search-input" placeholder="Search 100+ AI tools...">
+        </div>
+
+        <!-- CATEGORIES -->
+        <div class="category-container" id="categoryContainer">
+            <button class="category-btn active" onclick="filterCategory('ALL')">All</button>
+            <button class="category-btn" onclick="filterCategory('FAVORITES')">★ Favorites</button>
+            <button class="category-btn" onclick="filterCategory('CHAT')">Chat & Writing</button>
+            <button class="category-btn" onclick="filterCategory('IMAGE')">Image & Design</button>
+            <button class="category-btn" onclick="filterCategory('VIDEO')">Video & Animation</button>
+            <button class="category-btn" onclick="filterCategory('VOICE')">Voice & Music</button>
+            <button class="category-btn" onclick="filterCategory('CODING')">Coding & Dev</button>
+            <button class="category-btn" onclick="filterCategory('BUSINESS')">Business & Productivity</button>
+            <button class="category-btn" onclick="filterCategory('RESEARCH')">Research & Study</button>
+        </div>
+
+        <!-- AI GRID -->
+        <div class="ai-grid" id="aiGrid"></div>
+    </div>
+
+    <footer>
+        AI Box - Powered by Said Hasan
+    </footer>
+
+    <script>
+        const aiServices = [
+            // Chat & Writing
+            { name: "ChatGPT", url: "https://chatgpt.com", icon: "🤖", cat: "CHAT", desc: "OpenAI Conversational Assistant" },
+            { name: "Gemini", url: "https://gemini.google.com", icon: "✨", cat: "CHAT", desc: "Google Multimodal AI" },
+            { name: "Claude", url: "https://claude.ai", icon: "🧠", cat: "CHAT", desc: "Anthropic Advanced Assistant" },
+            { name: "Perplexity", url: "https://www.perplexity.ai", icon: "🔍", cat: "CHAT", desc: "AI-powered Search Engine" },
+            { name: "Poe", url: "https://poe.com", icon: "💬", cat: "CHAT", desc: "Multi-Model Chat Ecosystem" },
+            { name: "QuillBot", url: "https://quillbot.com", icon: "✍️", cat: "CHAT", desc: "Paraphrasing & Writing Tool" },
+
+            // Image & Design
+            { name: "Midjourney", url: "https://www.midjourney.com", icon: "🎨", cat: "IMAGE", desc: "Photorealistic Image Generation" },
+            { name: "Canva AI", url: "https://www.canva.com", icon: "🖼️", cat: "IMAGE", desc: "Smart Graphic & Photo Editing" },
+            { name: "Leonardo AI", url: "https://leonardo.ai", icon: "🔮", cat: "IMAGE", desc: "High Quality Creative Assets" },
+            { name: "Playground", url: "https://playground.com", icon: "🎭", cat: "IMAGE", desc: "Free Online Image Generator" },
+            { name: "Adobe Firefly", url: "https://firefly.adobe.com", icon: "🔥", cat: "IMAGE", desc: "Generative Design Engine" },
+            { name: "Remove.bg", url: "https://www.remove.bg", icon: "🔳", cat: "IMAGE", desc: "Instant Background Removal" },
+
+            // Video & Voice
+            { name: "Runway ML", url: "https://runwayml.com", icon: "🎥", cat: "VIDEO", desc: "Next-Gen AI Video Generation" },
+            { name: "HeyGen", url: "https://www.heygen.com", icon: "👤", cat: "VIDEO", desc: "AI Digital Avatar Generator" },
+            { name: "ElevenLabs", url: "https://elevenlabs.io", icon: "🎙️", cat: "VOICE", desc: "Ultra-Realistic AI Voice Generation" },
+            { name: "Suno AI", url: "https://suno.com", icon: "🎵", cat: "VOICE", desc: "Text to Original Song Generator" },
+
+            // Coding & Dev
+            { name: "Phind", url: "https://www.phind.com", icon: "💻", cat: "CODING", desc: "AI Search Engine for Developers" },
+            { name: "Replit", url: "https://replit.com", icon: "⚡", cat: "CODING", desc: "AI Code Editor & Cloud IDE" },
+
+            // Business & Research
+            { name: "Gamma App", url: "https://gamma.app", icon: "📊", cat: "BUSINESS", desc: "AI Slides & Document Creator" },
+            { name: "ChatPDF", url: "https://www.chatpdf.com", icon: "📑", cat: "BUSINESS", desc: "Interactive PDF Reader" },
+            { name: "Consensus", url: "https://consensus.app", icon: "🔬", cat: "RESEARCH", desc: "AI Search for Science" }
+        ];
+
+        let currentCat = 'ALL';
+        let favorites = JSON.parse(localStorage.getItem('ai_favs')) || [];
+
+        function renderGrid() {
+            const grid = document.getElementById('aiGrid');
+            const search = document.getElementById('searchInput').value.toLowerCase();
+            grid.innerHTML = '';
+
+            const filtered = aiServices.filter(ai => {
+                const matchCat = (currentCat === 'ALL') || 
+                                 (currentCat === 'FAVORITES' && favorites.includes(ai.name)) || 
+                                 (ai.cat === currentCat);
+                const matchSearch = ai.name.toLowerCase().includes(search) || ai.desc.toLowerCase().includes(search);
+                return matchCat && matchSearch;
+            });
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `<div style="grid-column: 1/-1; text-align: center; color: #888; padding: 40px;">No AI tools found</div>`;
+                return;
+            }
+
+            filtered.forEach(ai => {
+                const isFav = favorites.includes(ai.name);
+                const card = document.createElement('a');
+                card.className = 'ai-card';
+                card.href = ai.url;
+                card.target = '_blank';
+                card.innerHTML = `
+                    <span class="fav-btn ${isFav ? 'active' : ''}" onclick="toggleFav(event, '${ai.name}')">★</span>
+                    <div class="ai-icon">${ai.icon}</div>
+                    <div class="ai-name">${ai.name}</div>
+                    <div class="ai-desc">${ai.desc}</div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        function toggleFav(e, name) {
+            e.preventDefault();
+            e.stopPropagation();
+            if (favorites.includes(name)) {
+                favorites = favorites.filter(f => f !== name);
+            } else {
+                favorites.push(name);
+            }
+            localStorage.setItem('ai_favs', JSON.stringify(favorites));
+            renderGrid();
+        }
+
+        function filterCategory(cat) {
+            currentCat = cat;
+            document.querySelectorAll('.category-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            renderGrid();
+        }
+
+        document.getElementById('searchInput').addEventListener('input', renderGrid);
+
+        // Initial Render
+        renderGrid();
+    </script>
+</body>
+</html>
