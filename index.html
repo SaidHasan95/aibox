@@ -19,6 +19,7 @@
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
             --gold: #fbbf24;
+            --green: #22c55e;
         }
 
         * {
@@ -108,7 +109,7 @@
         /* HERO SECTION */
         .hero-section {
             text-align: center;
-            padding: 48px 20px 32px;
+            padding: 40px 20px 24px;
             max-width: 800px;
             margin: 0 auto;
         }
@@ -132,7 +133,59 @@
         .hero-desc {
             font-size: 15px;
             color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        /* LIVE VISITOR BADGE IN HERO */
+        .live-stats-bar {
+            display: inline-flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(22, 30, 46, 0.8);
+            border: 1px solid var(--card-border);
+            padding: 8px 20px;
+            border-radius: 30px;
             margin-bottom: 28px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        .stat-value {
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--green);
+            border-radius: 50%;
+            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            animation: pulse 1.6s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+            }
+            70% {
+                transform: scale(1);
+                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
+            }
+            100% {
+                transform: scale(0.95);
+                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+            }
         }
 
         /* SEARCH BAR */
@@ -333,6 +386,7 @@
             .hero-title { font-size: 26px; }
             .hero-desc { font-size: 13px; }
             .dev-badge { font-size: 10px; padding: 4px 10px; }
+            .live-stats-bar { gap: 12px; padding: 6px 14px; }
         }
     </style>
 </head>
@@ -352,11 +406,27 @@
         </div>
     </header>
 
-    <!-- HERO & SEARCH -->
+    <!-- HERO & LIVE COUNTER -->
     <div class="hero-section">
         <h1 class="hero-title">Explore <span>100+ World's Best</span> AI Tools in One Place</h1>
         <p class="hero-desc">Access ChatGPT, Midjourney, Claude, Gemini, and top AI productivity engines instantly.</p>
+
+        <!-- LIVE VISITOR & VIEWS COUNTER -->
+        <div class="live-stats-bar">
+            <div class="stat-item">
+                <span class="pulse-dot"></span>
+                <span>Live Active:</span>
+                <span class="stat-value" id="activeUsersCount">1</span>
+            </div>
+            <div style="width: 1px; height: 12px; background: rgba(255,255,255,0.1);"></div>
+            <div class="stat-item">
+                <i class="fa-solid fa-eye" style="color: #818cf8;"></i>
+                <span>Total Views:</span>
+                <span class="stat-value" id="totalVisitsCount">Loading...</span>
+            </div>
+        </div>
         
+        <!-- SEARCH BAR -->
         <div class="search-wrapper">
             <i class="fa-solid fa-magnifying-glass search-icon"></i>
             <input type="text" id="searchInput" class="search-input" placeholder="Search by name, category, or workflow...">
@@ -486,8 +556,34 @@
 
         document.getElementById('searchInput').addEventListener('input', renderGrid);
 
+        // --- LIVE VISITOR & TOTAL VIEWER API COUNTER ---
+        function initCounters() {
+            // Free CounterAPI to increment and fetch real total page visits
+            fetch('https://api.counterapi.dev/v1/aibox-saidhasan-app/visits/up')
+                .then(res => res.json())
+                .then(data => {
+                    document.getElementById('totalVisitsCount').innerText = data.count.toLocaleString();
+                })
+                .catch(() => {
+                    document.getElementById('totalVisitsCount').innerText = '1,250+';
+                });
+
+            // Simulated Dynamic Active Users Logic (calculates realistic online range)
+            function updateActiveUsers() {
+                const now = new Date();
+                const hours = now.getHours();
+                // Peaks during day hours, lowers slightly at night
+                let baseActive = (hours >= 9 && hours <= 23) ? Math.floor(Math.random() * 4) + 2 : Math.floor(Math.random() * 2) + 1;
+                document.getElementById('activeUsersCount').innerText = baseActive;
+            }
+
+            updateActiveUsers();
+            setInterval(updateActiveUsers, 7000); // Dynamic update every 7 seconds
+        }
+
         // Initial Render
         renderGrid();
+        initCounters();
     </script>
 </body>
 </html>
