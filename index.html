@@ -3,7 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AI Box — Ultimate AI Workspace</title>
+    
+    <!-- SEO Meta Tags for "All AI" Ranking -->
+    <title>All AI — 100+ Best AI Tools Directory | Powered by Said Hasan</title>
+    <meta name="description" content="Explore All AI tools in one workspace. Access ChatGPT, Midjourney, Claude, Gemini, and top AI productivity engines instantly.">
+    <meta name="keywords" content="All AI, All AI tools, AI Box, Best AI Apps, AI Directory, Said Hasan AI">
+    <meta name="author" content="Said Hasan">
+
+    <!-- Social Media Open Graph Tags -->
+    <meta property="og:title" content="All AI — 100+ Best AI Tools Directory">
+    <meta property="og:description" content="Explore All AI tools in one place. Powered by Said Hasan.">
+    <meta property="og:type" content="website">
+
     <!-- Google Fonts & FontAwesome Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -136,7 +147,7 @@
             margin-bottom: 24px;
         }
 
-        /* REAL-TIME VISITOR BADGE */
+        /* LIVE STATS BAR */
         .live-stats-bar {
             display: inline-flex;
             align-items: center;
@@ -169,23 +180,13 @@
             height: 8px;
             background-color: var(--green);
             border-radius: 50%;
-            box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
             animation: pulse 1.6s infinite;
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
-            }
-            70% {
-                transform: scale(1);
-                box-shadow: 0 0 0 8px rgba(34, 197, 94, 0);
-            }
-            100% {
-                transform: scale(0.95);
-                box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-            }
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
         }
 
         /* SEARCH BAR */
@@ -240,9 +241,7 @@
             scrollbar-width: none;
         }
 
-        .category-scroll::-webkit-scrollbar {
-            display: none;
-        }
+        .category-scroll::-webkit-scrollbar { display: none; }
 
         .cat-chip {
             background: var(--card-bg);
@@ -321,9 +320,7 @@
             transition: color 0.2s;
         }
 
-        .fav-star.active {
-            color: var(--gold);
-        }
+        .fav-star.active { color: var(--gold); }
 
         .ai-title {
             font-size: 17px;
@@ -380,14 +377,6 @@
             font-size: 13px;
             margin-top: auto;
         }
-
-        @media (max-width: 768px) {
-            header { padding: 14px 18px; }
-            .hero-title { font-size: 26px; }
-            .hero-desc { font-size: 13px; }
-            .dev-badge { font-size: 10px; padding: 4px 10px; }
-            .live-stats-bar { gap: 12px; padding: 6px 14px; }
-        }
     </style>
 </head>
 <body>
@@ -406,12 +395,12 @@
         </div>
     </header>
 
-    <!-- HERO & LIVE COUNTER -->
+    <!-- HERO & SEARCH -->
     <div class="hero-section">
-        <h1 class="hero-title">Explore <span>100+ World's Best</span> AI Tools in One Place</h1>
+        <h1 class="hero-title">Explore <span>All AI Tools</span> in One Place</h1>
         <p class="hero-desc">Access ChatGPT, Midjourney, Claude, Gemini, and top AI productivity engines instantly.</p>
 
-        <!-- ACCURATE VISITOR COUNTER BADGE -->
+        <!-- VISITOR COUNTER -->
         <div class="live-stats-bar">
             <div class="stat-item">
                 <span class="pulse-dot"></span>
@@ -436,7 +425,7 @@
     <!-- MAIN CONTENT -->
     <div class="main-container">
         <!-- CATEGORIES -->
-        <div class="category-scroll" id="categoryContainer">
+        <div class="category-scroll">
             <button class="cat-chip active" onclick="filterCategory('ALL')"><i class="fa-solid fa-border-all"></i> All Tools</button>
             <button class="cat-chip" onclick="filterCategory('FAVORITES')"><i class="fa-solid fa-star"></i> Favorites</button>
             <button class="cat-chip" onclick="filterCategory('CHAT')"><i class="fa-solid fa-comment-dots"></i> Chat & Writing</button>
@@ -459,34 +448,25 @@
 
     <script>
         const aiServices = [
-            // Chat & Writing
             { name: "ChatGPT", url: "https://chatgpt.com", icon: "🤖", cat: "CHAT", desc: "OpenAI Conversational & Writing AI" },
             { name: "Gemini", url: "https://gemini.google.com", icon: "✨", cat: "CHAT", desc: "Google Multimodal Smart Assistant" },
             { name: "Claude AI", url: "https://claude.ai", icon: "🧠", cat: "CHAT", desc: "Anthropic Next-Gen Intelligent Assistant" },
             { name: "Perplexity", url: "https://www.perplexity.ai", icon: "🔍", cat: "CHAT", desc: "Real-time Conversational Search Engine" },
             { name: "Poe", url: "https://poe.com", icon: "💬", cat: "CHAT", desc: "Multi-Model AI Ecosystem & Bots" },
             { name: "QuillBot", url: "https://quillbot.com", icon: "✍️", cat: "CHAT", desc: "AI Paraphrasing & Grammar Checker" },
-
-            // Image & Design
             { name: "Midjourney", url: "https://www.midjourney.com", icon: "🎨", cat: "IMAGE", desc: "Industry Leading Image Generator" },
             { name: "Canva AI", url: "https://www.canva.com", icon: "🖼️", cat: "IMAGE", desc: "Smart AI Design Suite & Photo Tools" },
             { name: "Leonardo AI", url: "https://leonardo.ai", icon: "🔮", cat: "IMAGE", desc: "Production Quality Asset Creation" },
             { name: "Playground AI", url: "https://playground.com", icon: "🎭", cat: "IMAGE", desc: "Free Creative Image & Canvas Generator" },
             { name: "Adobe Firefly", url: "https://firefly.adobe.com", icon: "🔥", cat: "IMAGE", desc: "Commercial Generative Art Engine" },
             { name: "Remove.bg", url: "https://www.remove.bg", icon: "🔳", cat: "IMAGE", desc: "Automatic Background Eraser" },
-
-            // Video & Audio
             { name: "Runway ML", url: "https://runwayml.com", icon: "🎥", cat: "VIDEO", desc: "Professional AI Video & VFX Generation" },
             { name: "HeyGen", url: "https://www.heygen.com", icon: "👤", cat: "VIDEO", desc: "Realistic Digital Avatar Video Creator" },
             { name: "ElevenLabs", url: "https://elevenlabs.io", icon: "🎙️", cat: "VOICE", desc: "Ultra-Realistic Text-to-Speech Voice" },
             { name: "Suno AI", url: "https://suno.com", icon: "🎵", cat: "VOICE", desc: "Generative Music & Song Creator" },
-
-            // Coding & Dev
             { name: "Phind", url: "https://www.phind.com", icon: "💻", cat: "CODING", desc: "AI Search Engine Customized for Coders" },
             { name: "Replit Agent", url: "https://replit.com", icon: "⚡", cat: "CODING", desc: "Cloud IDE with Autonomous Coding AI" },
             { name: "v0.dev", url: "https://v0.dev", icon: "📐", cat: "CODING", desc: "Generative UI System by Vercel" },
-
-            // Business & Research
             { name: "Gamma App", url: "https://gamma.app", icon: "📊", cat: "BUSINESS", desc: "Instant AI Slides & Document Creator" },
             { name: "ChatPDF", url: "https://www.chatpdf.com", icon: "📑", cat: "BUSINESS", desc: "Interactive PDF Reader & Summarizer" },
             { name: "Consensus", url: "https://consensus.app", icon: "🔬", cat: "RESEARCH", desc: "Search Academic Papers with AI" }
@@ -556,17 +536,14 @@
 
         document.getElementById('searchInput').addEventListener('input', renderGrid);
 
-        // --- ACCURATE 100% REAL VISITOR & PAGE VIEW TRACKER ---
         function initCounters() {
             let realViews = localStorage.getItem('aibox_accurate_views') || 0;
             realViews = parseInt(realViews) + 1;
             localStorage.setItem('aibox_accurate_views', realViews);
-
             document.getElementById('totalVisitsCount').innerText = realViews.toLocaleString();
-            document.getElementById('activeUsersCount').innerText = 'Active';
+            document.getElementById('activeUsersCount').innerText = 'Online';
         }
 
-        // Initial Render
         renderGrid();
         initCounters();
     </script>
