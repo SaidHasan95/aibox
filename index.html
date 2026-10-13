@@ -536,13 +536,21 @@
 
         document.getElementById('searchInput').addEventListener('input', renderGrid);
 
-        function initCounters() {
-            let realViews = localStorage.getItem('aibox_accurate_views') || 0;
-            realViews = parseInt(realViews) + 1;
-            localStorage.setItem('aibox_accurate_views', realViews);
-            document.getElementById('totalVisitsCount').innerText = realViews.toLocaleString();
-            document.getElementById('activeUsersCount').innerText = 'Online';
+       async function initCounters() {
+    try {
+        const response = await fetch('https://api.counterapi.dev/v1/saidhasan-aibox/pageviews/up');
+        const data = await response.json();
+        if (data && data.count) {
+            document.getElementById('totalVisitsCount').innerText = data.count.toLocaleString();
+        } else {
+            document.getElementById('totalVisitsCount').innerText = '86';
         }
+    } catch (error) {
+        console.error('Counter Error:', error);
+        document.getElementById('totalVisitsCount').innerText = '86';
+    }
+    document.getElementById('activeUsersCount').innerText = 'Online';
+}
 
         renderGrid();
         initCounters();
